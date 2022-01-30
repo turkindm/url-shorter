@@ -1,0 +1,37 @@
+version: '3'
+services:
+    app:
+        build:
+            context: docker/images/php/
+        container_name: pioneer_app
+        depends_on:
+            - "db"
+        volumes:
+            - .:/var/www/project
+    web:
+        container_name: pioneer_web
+        image: nginx:alpine
+        ports:
+            - "8080:80"
+        volumes:
+            - ./docker/hosts:/etc/nginx/conf.d
+            - .:/var/www/project
+            - ./docker/logs:/var/log/nginx
+        depends_on:
+            - "app"
+    db:
+        container_name: pioneer_db
+        image: postgres:13.3-alpine
+        ports:
+            - "54321:5432"
+        environment:
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+            PGDATA: /data/postgres
+        volumes:
+            - ./docker/database/create-testing-db.sh:/docker-entrypoint-initdb.d/create-testing-db.sh
+            - db-data:/data/postgres
+volumes:
+    db-data:
+        driver: local
