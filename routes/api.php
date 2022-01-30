@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\LinkStatisticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,6 @@ Route::get('/links/{id}', [LinkController::class, 'show']);
 Route::post('/links', [LinkController::class, 'store']);
 Route::patch('/links/{id}', [LinkController::class, 'update']);
 Route::delete('/links/{id}', [LinkController::class, 'destroy']);
+
+Route::get('/stats', [LinkStatisticsController::class, 'showOverall']);
+Route::get('/stats/{id}', [LinkStatisticsController::class, 'showForLink']);
