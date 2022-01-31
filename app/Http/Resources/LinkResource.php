@@ -17,7 +17,7 @@ class LinkResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'short_url' => url()->route('links.view', $this->hash_id),
+            'short_url' => $this->hash_id,
             'long_url' => $this->long_url,
             'tags' => $this->tags()->pluck('name'),
         ];
