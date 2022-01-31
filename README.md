@@ -1,8 +1,6 @@
 # URL Shortener
 URL Shortener предназначен для сокращения сложных длинных ссылок на короткие и простые.
 
-Например: https://www.youtube.com/watch?t=3&v=DLzxrzFCyOs&feature=youtu.be => http://arcane-fortress-64578.herokuapp.com/p2 
-
 🔗 [Demo API](http://arcane-fortress-64578.herokuapp.com/api)
 
 ## Примеры запросов
